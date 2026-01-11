@@ -24,4 +24,3 @@ while True:
     except:
         print("invalid city name, Please enter a valid city name")
 
-
