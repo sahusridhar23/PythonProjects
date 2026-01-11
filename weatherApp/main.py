@@ -1,16 +1,22 @@
-# This is a sample Python script.
+import requests
+import json
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+print("Welcome to WeatherApp 1.0 .Created by Sridhar Sahu\n")
+
+while True:
+    try :
+        city = input("Enter the city name:")
+        if city.lower() == 'exit':
+            print("Thank you for using WeatherApp 1.0")
+            break
+        url = f"https://api.weatherapi.com/v1/current.json?key=d71e9e5a9b8345e8a4622336261101&q={city}"
+        r = requests.get(url)
+        # print(type(r.text)) - json string
+
+        wdic = json.loads(r.text) #parse json string to dictionary
+        w = wdic["current"]["temp_c"]
+        print('temp_C = ',w)
+    except:
+        print("invalid city name, Please enter a valid city name")
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
